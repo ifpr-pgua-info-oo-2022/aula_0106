@@ -2,12 +2,23 @@ import java.util.Scanner;
 
 public class MegaSena{
 
+
+    public static boolean verificaRepetido(int escolha, int[] escolhas){
+        for(int j=0;j<6;j++){
+            if(escolhas[j] == escolha){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public static void main(String[] args){
         
         Scanner scan = new Scanner(System.in);
         int escolha;
         int[] escolhas;
-
+        boolean flag;
         escolhas = new int[6];
         //int i;
 
@@ -18,7 +29,15 @@ public class MegaSena{
                 if(escolha < 1 || escolha > 60){
                     System.out.println("Valor inválido!!");
                 }
-            }while(escolha<1 || escolha > 60);
+
+                flag = verificaRepetido(escolha, escolhas);
+                if(flag == true){
+                    System.out.println("Valor repetido!");
+                }
+
+            }while(escolha<1 || escolha > 60  || flag==true);
+
+        
             System.out.println("Digitou "+escolha);
             escolhas[i] = escolha;
         }
